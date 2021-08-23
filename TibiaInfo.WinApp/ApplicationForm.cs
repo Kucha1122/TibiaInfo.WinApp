@@ -49,12 +49,15 @@ namespace TibiaInfo.WinApp
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            var setNameDialog = new SetNameDialog();
+            using var setNameDialog = new SetNameDialog();
+            var dialogResult = setNameDialog.ShowDialog();
 
-            if (setNameDialog.ShowDialog(this) == DialogResult.OK)
+            if (dialogResult == DialogResult.OK)
             {
-                CharacterNameLabel.Text = setNameDialog.text
+                CharacterNameLabel.Text = setNameDialog.CharacterName;
             }
+            
+            setNameDialog.Dispose();
         }
         
         private void ApplicationForm_FormClosing(object sender, FormClosingEventArgs e)
